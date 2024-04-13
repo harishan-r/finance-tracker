@@ -11,8 +11,7 @@ app.use(cors());
 app.use(express.json());
 
 
-// const mongoDbUri = process.env.MONGODB_URI;
-const mongoDbUri = "mongodb+srv://user1:user1@cluster0.lihfi4o.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+const mongoDbUri = process.env.MONGODB_URI;
 
 // Connect to your MongoDB database (replace with your database URL) 
 mongoose.connect(mongoDbUri, { useNewUrlParser: true, useUnifiedTopology: true }); 
