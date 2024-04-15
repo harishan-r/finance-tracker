@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { useDropzone } from 'react-dropzone';
 import Papa from 'papaparse';
 
-// given the following transaction, classify its category into housing, groceries, eating out, transportation, entertainment, shopping, subscriptions, Miscellaneous, payments/refund: PAYMENT RECEIVED - THANK YOU. Answer with just the category
+const apiUrl = process.env.REACT_APP_API_URL;
 
 const FileDrop = () => {
   const [isProcessing, setIsProcessing] = useState(false);
@@ -33,8 +33,7 @@ const FileDrop = () => {
           // Extract descriptions based on selected bank's column index
         //   const descriptions = result.data.map(row => row[banks[bank] - 1]); // Adjusting index as array is zero-based
         //   console.log('Transaction Descriptions:', descriptions);
-          setIsProcessing(false);
-          setIsComplete(true);
+          uploadData(result.data);
         },
         header: false
       });
@@ -42,6 +41,24 @@ const FileDrop = () => {
       alert("Please upload a file with a .csv extension.");
     }
   }, [bank]);
+
+  const uploadData = async (data) => {
+    try {
+        const response = await fetch(`${apiUrl}api/process-transactions`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ data: data, bankName: bank }) // Assume 'Amex' or have user select it
+        });
+        const responseData = await response.json();
+        setIsProcessing(false);
+        setIsComplete(true);
+        console.log('Server response:', responseData);
+    } catch (error) {
+        console.error('Error uploading data:', error);
+    }
+};
 
   const {getRootProps, getInputProps, isDragActive} = useDropzone({
     onDrop,
