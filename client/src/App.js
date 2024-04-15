@@ -4,7 +4,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import Todo from './components/Todo'; 
-
+import FileDrop from './components/FileDrop'; 
 
 function App() { 
 const headStyle = { 
@@ -12,10 +12,10 @@ const headStyle = {
 } 
 return ( 
 	<div> 
-	<h1 style={headStyle}>Todo List</h1> 
+	<h1 style={headStyle}>Finance Tracker</h1> 
 	<BrowserRouter> 
 		<Routes> 
-		<Route path='/' element={<Todo/>}></Route> 
+		<Route path='/' element={<FileDrop/>}></Route> 
 		</Routes> 
 	</BrowserRouter> 
 	</div> 

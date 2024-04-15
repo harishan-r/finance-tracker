@@ -5,11 +5,13 @@ const express = require('express')
 const mongoose = require('mongoose') 
 const cors = require('cors') 
 const TodoModel = require("./models/todoList") 
+const fileDropEndPoints = require("./fileDropEndPoints")
 
 var app = express(); 
 app.use(cors()); 
 app.use(express.json());
 
+fileDropEndPoints(app);
 
 const mongoDbUri = process.env.MONGODB_URI;
 
