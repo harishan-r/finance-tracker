@@ -4,7 +4,7 @@ import Papa from 'papaparse';
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
-const FileDrop = () => {
+const FileDrop = ({ onTransactionsUpdate }) => {
   const [isProcessing, setIsProcessing] = useState(false);
   const [isComplete, setIsComplete] = useState(false);
   const [fileName, setFileName] = useState('');
@@ -54,6 +54,7 @@ const FileDrop = () => {
         const responseData = await response.json();
         setIsProcessing(false);
         setIsComplete(true);
+        onTransactionsUpdate(responseData.data);
         console.log('Server response:', responseData);
     } catch (error) {
         console.error('Error uploading data:', error);
