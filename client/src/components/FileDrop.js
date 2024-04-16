@@ -10,11 +10,6 @@ const FileDrop = ({ onTransactionsUpdate }) => {
   const [fileName, setFileName] = useState('');
   const [bank, setBank] = useState('');
 
-  const banks = {
-    Amex: 4, // Amex uses column number 3
-    CIBC: 4, // CIBC uses column number 4
-    TD: 6   // TD uses column number 6
-  };
 
   const onDrop = useCallback((acceptedFiles) => {
     const file = acceptedFiles[0];
@@ -49,11 +44,12 @@ const FileDrop = ({ onTransactionsUpdate }) => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ data: data, bankName: bank }) // Assume 'Amex' or have user select it
+            body: JSON.stringify({ data: data, bankName: bank })
         });
         const responseData = await response.json();
         setIsProcessing(false);
         setIsComplete(true);
+        setBank("");
         onTransactionsUpdate(responseData.data);
         console.log('Server response:', responseData);
     } catch (error) {
@@ -72,8 +68,7 @@ const FileDrop = ({ onTransactionsUpdate }) => {
       <select value={bank} onChange={(e) => setBank(e.target.value)} style={{ marginBottom: '20px' }}>
         <option value="">Select your bank</option>
         <option value="Amex">Amex</option>
-        <option value="CIBC">CIBC</option>
-        <option value="TD">TD</option>
+        <option value="Simplii">Simplii</option>
       </select>
       <div {...getRootProps()} style={{ border: '2px dashed #007bff', padding: '20px' }}>
         <input {...getInputProps()} />

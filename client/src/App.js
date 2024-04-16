@@ -10,12 +10,10 @@ import Dashboard from './components/Dashboard';
 function App() { 
 	const [transactions, setTransactions] = useState([]);
 	const handleTransactionsUpdate = (newTransactions) => {
-        setTransactions(newTransactions);
+		const concatTrans = transactions.concat(newTransactions);
+        setTransactions(concatTrans);
     };
 
-	useEffect(() => {
-        console.log("Transactions updated", transactions); // This will log the updated state
-    }, [transactions]);
 
 	const headStyle = { 
 		textAlign: "center", 

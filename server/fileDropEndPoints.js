@@ -19,10 +19,10 @@ const bankConfigurations = {
         costColumn: 2, 
         descriptionColumn: 3 
     },
-    "TD": {
+    "Simplii": {
         dateColumn: 0,
-        costColumn: 1,
-        descriptionColumn: 5 
+        costColumn: 2,
+        descriptionColumn: 1 
     }
 };
 
