@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react'; 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'; 
 import 'bootstrap/dist/css/bootstrap.min.css'; 
-import Todo from './components/Todo'; 
 import FileDrop from './components/FileDrop'; 
 import Dashboard from './components/Dashboard';
 
