@@ -94,8 +94,12 @@ async function classifyTransaction(description) {
             return cache[description];
         }
         const response = await openai.chat.completions.create({
-            messages: [{ role: "system", content: `Given the following transaction, classify its category into Housing, Groceries, Restaurant, Transportation, Entertainment, Shopping, Subscriptions, Miscellaneous, Payments/Refund: ${description}. Answer with just the category.` }],
-            model: "gpt-3.5-turbo",
+            messages: [{ 
+                role: "system", 
+                content: `Given the following transaction, classify its category into Housing, Groceries, Restaurant, 
+                Transportation, Entertainment, Shopping, Subscriptions, Miscellaneous, Payments/Refund: ${description}. 
+                Answer with just the category.` }],
+                model: "gpt-3.5-turbo",
           });
 
         if (response && response.choices && response.choices.length > 0) {
